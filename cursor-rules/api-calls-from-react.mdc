@@ -7,7 +7,7 @@ alwaysApply: false
 - React applications must make API calls using fetch
 - All API calls are made using a custom hook called useFetch
 - useFetch hook exposes:
-    - doGet(url)
+    - doGet(url, data)
     - doPost(url, data)
     - doPut(url, data)
 - useFetch always returns:
