@@ -1,0 +1,7 @@
+---
+description: 
+globs: apps/pm-api/src/**/*
+alwaysApply: false
+---
+- Lodash is never used
+- Cleaner Node (`cleaner-node`) is used for general validation and is imported as "_"

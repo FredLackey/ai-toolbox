@@ -1,0 +1,31 @@
+---
+description: 
+globs: **/src/data/**/*
+alwaysApply: false
+---
+# Repository Pattern
+
+- All CRUD operations are stored within a reusuable db.js library file.
+- Data logic operations are each stored within a single repository file (ie %MODEL_NAME%/findMemberByUid.js, %MODEL_NAME%/createMember.js, etc.).
+- Only data logic operations may call the database directly (ie findMemberByUid, createMember, etc.).
+- All data logic functions are stored within a folder for the object they work with (ie, members, organizations, etc.).
+- Route handlers and other components may only access the database by calling a data logic operation and must never call the database directly.
+
+# Dates and Timestamps 
+
+- All dates are stored in the database as timestamp fields and are not nullable
+- Null timestamp values are indicated with a value from the cleaner-node package's ZERO_DATE constant.  The ZERO_DATE constant is "new Date('1970-01-01Z00:00:00:000')"
+
+# Audit Fields
+
+- All audit fields are always required except when the "au" field points back to the same table.
+- All fields are set by the data logic layer within the repository function.
+- Not all audit fields are required on every model or table.
+- Audit field names are:
+  - ac : Date Created : Set when the record is created.
+  - av : Date Version : Set when a record is created or updated.
+  - ad : Date Deleted : Always set to a a value.  Set to _.ZERO_DATE using the "cleaner-node" package to indicate the record is not deleted.  Any other value indicates a soft delete.
+  - au : User : The ID of the user who created, updated, or soft-deleted the record.
+- Setting the audit fields the responsibility of the repository functions and not db.js
+- The db.js cannot always check the ad field since not all objects have this field.  The findById and findByUid functions include logic to include scenarios where the object may not have this field.
+- The au property must be passed into a data logic function if the model or table has an au field. 

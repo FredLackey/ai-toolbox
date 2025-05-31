@@ -1,0 +1,19 @@
+---
+description: 
+globs: src/pm-webapp/src/**/*.*
+alwaysApply: false
+---
+- Axios is never used to make API calls
+- React applications must make API calls using fetch
+- All API calls are made using a custom hook called useFetch
+- useFetch hook exposes:
+    - doGet(url)
+    - doPost(url, data)
+    - doPut(url, data)
+- useFetch always returns:
+    - success (boolean)
+    - data (object or array)
+    - status (http status code)
+    - error (null or object)
+    - error.number (number or null)
+    - error.message (string or null)

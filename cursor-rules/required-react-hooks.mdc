@@ -1,0 +1,20 @@
+---
+description: 
+globs: pm-webapp/**/*.*
+alwaysApply: false
+---
+All calls to installed packages and browser components are made via a hook.  Required hooks are:
+
+- useLocalStorage : Safely handles calls to local storage and gracefully handles situations when local storage is not ready within the browser
+
+- useSession : Manipulates local user-session object in local storage
+
+- useFetch : Imports userSession to poplate authentication headers
+
+- useUserData : Imports useFetch and useSession, manipulates local user-data object, user-data is destored upon logout.  All data specific to the user is stored within the user-data object.
+
+- useResourceData : Imports useFetch, manipulates local resource-data object by reading/writing/refreshing enum values and type data from API.  resource-data has dateUpdated and dateExpiry properties to determine if the resource data should be refreshed.  The resource-data object persists between user sessions and is common to all users.
+
+- useAuth : Imports useUserData, useResourceData, and useFetch, handles login/logout/isLoggedIn functionality, also handles loading/selecting Organization objects and Cloud Account objects
+
+- useApi : Imports useFetch, useAuth, useResourceData, and useResourceData.  The useApi hook knows the back-end API routes and is able to call useFetch methods directly when needed.  The useApi hook also knows when to read or safe data to or from useUserData or useResourceData or useAuth hooks.  All user interface calls are sent to useApi methods for functionaly that involves calling the API, working with user data and resource data.

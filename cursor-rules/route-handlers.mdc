@@ -1,0 +1,16 @@
+---
+description: 
+globs: **/src/routes/**/*
+alwaysApply: false
+---
+- All routes must be completely documented within an OpenAPI spec document before creating or modifying any route handler
+- Route handlers are writen and exposed as a function.  Example: 
+
+  const fetchItems = (req, res) => {
+    const data = [];
+    return res.json(data); 
+  }
+
+- The Express Router object may only exist in an index.js file.
+- The index.js file defines the routes and exposes the route handlers.
+- All route handlers should have a single validate(req) function and return either a single error string or null.

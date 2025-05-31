@@ -1,0 +1,9 @@
+---
+description: 
+globs: **/src/data/**/*
+alwaysApply: false
+---
+- Publicly available data objects are identified using the "uid" field if the primary key is a number
+- The MongoDB ObjectID is safe to expose publicly.
+- The route handlers and exposed data objects are documented in separate OpenAPI docs and the JSON Schema docs only define the database objects.
+

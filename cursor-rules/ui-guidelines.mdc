@@ -1,0 +1,231 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# General
+
+* white background
+* dark green color pallet for controls
+* no dark mode
+* desktop first (separate apps exist for mobile)
+* outter layout of the app constrained to 900px max width, centered horizontally
+* horizontal navigation only (vertical navigation never allowed)
+* footer contains only public information, is visible on all pages, is the same in all apps
+* primary nav bar is always visible, left side never changes, right side is different based on auth status and app type.
+* next based links never have an underscore
+* app types are:
+
+	- Public Landing : 
+		- used for monorepos with a separate app for authenticated users
+		- provides basic marketting, faq, help for conversion
+		- has feature list for three subscription tiers 
+		- has magic link and oauth login page
+		- left side of primary nav text links: app name, Features, Help, FAQ
+		- right side of primamry nav bar buttons: Sign In, Get Started
+	- Private Landing
+		- similar to public landing but without marketting or conversion
+		- used for monorepos with a separate app for authenticated users
+		- no marketting, feature list, FAQ, or conversion purposes
+		- has help area for contact info and link to docs
+		- no FAQ marketting, faq, help for conversion
+		- has magic link and SAML login page
+		- left side of primary nav text links: app name, Help
+		- right side of primamry nav bar buttons: Sign In
+	- Dashboard
+		- used for monorepos with a spearate app for public users
+		- left side of primary nav is identical to landing page
+		- right side of primamry nav bar icons: Notifications with badge, Gravatar with popup
+		- badge is not a number, only a dot showing new notifications exist
+		- secondary nav bar used for dashboard navigation and contro 
+		- secondary nav bar is always visible
+	- Public Hybrid
+		- combines Public Landing and Dashboard into one app
+	- Private Hybrid
+		- combines Private Landing and Dashboard into one app
+
+# Page Descriptions
+
+## Public Landing
+
+* Home : Hero page / landing page
+* Features : Shows pricing for three subscription tiers; Free, Pro, Team
+* Help : Info for Email, Phone, Live Chat, and Docs
+* FAQ : Accordion with common questions
+* Login : Single text field for magic link login using email or phone only
+* Login Success : Message page presented after requesting magic link login
+
+## Private Landing
+
+* Home : Landing page
+* Help : List of contacts (name, title, email, phone), team email address, link to Docs
+* Login : Single text field for magic link login using email or phone only
+* Login Success : Message page presented after requesting magic link login
+
+# Primary Nav Bar
+
+* left side of primary nav bar is identical on all sites, apps, and pages:
+
+	- App Name : far left, bold, links to home page
+	- Text Links : immediately to the right of the app name, not bold
+
+* app name is bold and the dark green color used in the pallet
+* right-mode side button of the primary nav bar has a dark green primary button
+* if right side of the primary nav bar has a second button it is immedately left of the primary button and has a light background
+* right side changes to Notification and Gravatar icons for dashboard apps or areas
+
+# Dashboard Area / Dashboard App
+
+* the dashboard may be a stand-alone app or a private area of a single app
+* for combined apps with the public landing and dashboard, the dashboard layout is a child layout contained within the main body of the parent layout and accessible at the /dashboard base route
+* dashboard is only available to logged in users
+
+# Dashbaord Nav Bar (Secondary Navbar)
+
+* shown immediately under the primary navbar
+* shown on all dashboard pages at all times
+* left side is dropdown for selecting appropriate items, auto-exands to largest text value
+* square icon button optionally shown immediately right of the dropdown
+* right side of secondary navbar contains:
+
+	- CTA Button : far right 
+	- Text Links : immediately left of the CTA Button, links to the top routes in the dashboard
+
+# Dashboard Page Header
+
+* shown immeidately under the secondary navbar (dashboard navbar)
+* divided into two columns
+* left side contains page name in bold with subdued description under page name in smaller font
+* right side contains optional action buttons retaining to the page (Add Item, Do Something, etc.)
+
+# Dashboard Page Content Area
+
+* shown immediately under the Dashboard Page Header
+* may be one of several types:
+
+	- data table : for both editable and read only collections of data
+	- multi-section : used for settings
+	- grid : used for list items of the same type
+	- dashboard : 1x4 or 1x3 row of cards on top, 4x4 grid of cards second, grid may be reodered by dragging
+
+# Data Table Page Guidelines
+
+* data table appears in card
+* card header has name in bold and subdued text description under the header
+* no ID column
+* pagination is required (first, back, next, last)
+* page size selector dropdown in footer
+* action column with hamburger menu icon on each row, no header
+* table, table header, and table footer hidden when no data exists
+* no items message displayed when no data exists
+* for editable data tables a Create First Item button displayed with message
+
+# Mulit-Section Page Guidlines
+
+* all contents appear in card
+* card header has name in bold and subdued text description under the header
+* save changes button in header on the far right parallel to title and description
+* save changes button disabled when no changes are present
+* tab strip at top of card allows changing section
+* active tab item of displayed section is highlighted
+* dedicated table section has special guidelines:
+
+	- intended for adding / editing complex data types (rules, schedules, etc.)
+	- no pagination
+	- each item may contain multiple rows each items
+
+# Grid Page Guidlines
+
+* may be toggled between list view and grid view
+* each item is a card with the same style and controls, cards may be ordered by dragging
+* all items are derived from the same data object type or meta objec type
+* has title
+* has description or subtext if space allows
+* may have edit button or action button or both
+* for grid view, optional "add new" option shown in place of a card
+* for list view, optional "add new" option shown on list header as + symbol button
+
+# Authorized Technologies
+
+* Express JS
+* JavaScript (no TypeScript)
+* EJS
+* HTML & Tailwind CSS
+
+---
+
+## Spacing & Density
+
+- Sections should flow tightly—no excessive top/bottom padding between components.
+
+## Button Styling
+
+- Use flat or subtly raised styles; avoid thick shadows or gradients.
+
+## Layout & Grid Rules
+
+- All content must sit within a `max-width: 900px` container, centered horizontally.
+- Use `grid` or `flexbox` to arrange content in 2–4 column structures when possible.
+- Do not stack full-width sections without clear separation.
+
+## Design Philosophy
+
+This application is intended to be a **professional, internal tool**—not a marketing site. Visual design should:
+- Prioritize clarity, space efficiency, and usability.
+- Avoid playful, flashy, or overly accessible styles.
+- Feel is internal SaaS dashboards used by developers or analysts.
+
+---
+
+## Visual Refinement Guidelines
+
+### 📦 Cards and Sections
+
+- All major content areas (e.g. Resources, Notifications, Metrics) must be placed inside visual containers.
+- Each card/section must include:
+  - Optional light shadow: `box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05)`
+  - Rounded corners: `border-radius: 8px`
+  - Use background `#ffffff` or slightly off-white (`#fafafa`) to distinguish sections
+- Avoid heavy, dark borders. Use:
+    - Light borders: `#eaeaea` or `#f0f0f0`
+    - Or substitute with a subtle shadow: `box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04)`
+- Increase border-radius to `8px` for all cards and major controls to soften the visual tone.
+
+### 🧱 Tables and Data Blocks
+
+- Use borders or alternating row backgrounds for visual separation
+- Do not collapse cells together—ensure whitespace exists between content blocks
+
+### 🖲️ Controls and Inputs
+
+- All controls (e.g., dropdowns, buttons, text inputs) must:
+  - Include hover states for interactivity (`border-color`, `shadow`, or background tint)
+  - Avoid overly flat or invisible UI elements
+
+### Background Color Policy
+
+- Avoid green, blue, or tinted section backgrounds.
+- All primary containers and page backgrounds must be pure white: `#ffffff`.
+- Use very light gray (`#f9f9f9`) for subtle highlights (e.g. table row hover, inactive states).
+
+### 🔲 Visual Hierarchy
+
+- Group related information inside visually distinct blocks
+- Use card structure or background shading to separate unrelated content
+- Avoid leaving components floating without visual framing
+
+### Color Usage for Status and Alerts
+
+Introduce color with intent and hierarchy:
+
+- **Success**: Green (`#198754`) – e.g., “Running”, “Success”
+- **Warning**: Amber (`#f0ad4e`) – e.g., “Pending”, “Scheduled”, “Attention”
+- **Danger**: Red (`#dc3545`) – e.g., “Failed”, “Error”
+- **Neutral**: Blue or Gray (`#6c757d`, `#0d6efd`) – e.g., “Info”, “Default”
+- Use for:
+  - Status pills
+  - Timeline activity icons
+  - Alerts and notifications
+  - Contextual tags or indicators
+
+These rules ensure a polished, breathable UI even under high layout density constraints.

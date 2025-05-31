@@ -1,0 +1,12 @@
+---
+description: 
+globs: **/data/repos/**
+alwaysApply: false
+---
+- When creating a function that requires an object's ID the function receives object or the ID using a property such as "objectOrId" combined with the cleaner-node _.getId(objectOrId) function.
+- Functions that create or update data must always receive the "au" property which is the equivilent of "memberOrId" for the member calling the function.
+- Repository functions should always return a pure JSON object using the cleaner-node _.copy(obj) function 
+- Queries within repository functions do not need to specify the "ad" field as the parent db.js handles the soft delete status.
+- The au value is required for all objects having this field except for the "member" object.
+- When using the _id property in a query it must be passed through the db.js toObjectId(original._id) function.
+- No repo should have a function named "update".  This is reserved for the db.js file.  All repos should have clear update functions (ie setExpiryDate()) that will use the parent update() method.

@@ -1,0 +1,10 @@
+---
+description: Creating tests for APIs
+globs: 
+alwaysApply: false
+---
+- APIs are tested using the VSCode RestClient extension
+- One *.http file is created for each major route function
+- Only success tests are created (happy path)
+- The API tests folder is /tests under the project root folder and mirrors the structure of the route path
+- The API_HOST_URL is stored within the project's .env file and is loaded when the tests are run.

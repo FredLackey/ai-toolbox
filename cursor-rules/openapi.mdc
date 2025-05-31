@@ -1,0 +1,27 @@
+---
+description: 
+globs: **/src/routes/**/*
+alwaysApply: false
+---
+- IMPORTANT: WHEN CREATING OPENAPI SPEC FILES FOR EXISTING ROUTES NEVER CREATE PATHS, SCHEMAS, OR PROPERTIES THAT THE ROUTE HANDLERS DO NOT ALREADY HANDLE!  DO NOT GET CREATIVE!
+
+- Schemas must always have either a "Request" or "Response" suffix indicating how the schema is used in the API call.
+- Schema files must always have either a "-request" or "-response" suffix indicating how the schema is used.  This suffix may be omitted if both the *Request and *Response are in the same schema file.
+- Suffix "-request-response" or "-request-request" is not valid.  The schema is either a request or a reponse.
+- Schema file names should be "%FUNCTION%-request.yaml% and "%FUNCTION%-response.yaml%
+
+- The OpenAPI root folder under each project folder is: %PROJECT%/src/routes/openapi/
+- The main index file for the OpenAPI documents is %PROJECT%/src/routes/openapi/openapi.yaml
+- OpenAPI files must remain as small as possible.
+- OpenAPI files must modular with separate files for schemas and paths
+
+- No integer, bigint, or char primary key may ever be exposed via an API
+- Type tables are identified using the "enum_name" field
+
+- API-to-API route handlers are located under %PROJECT%/src/routes/api
+- UI-to-API route handlers are located under %PROJECT%/src/routes/ux
+
+- API-to-API routes are defind under the %PROJECT%/src/routes/openapi/paths/api and %PROJECT%/src/routes/openapi/schemas/api folders 
+- UI-to-API routes are defind under the %PROJECT%/src/routes/openapi/paths/ux and %PROJECT%/src/routes/openapi/schemas/ux folders 
+
+- All OpenAPI files should have a name and description explaining the purpose of the file.
